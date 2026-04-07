@@ -1,9 +1,3 @@
-// TakeoffZoneController.cs
-// CENG 454 - HW2 Midterm: Sky-High Prototype II
-// Author: Ibrahim Arikboga | Student ID: 210444082
-// Description: Detects when the aircraft leaves the takeoff runway area.
-//              Notifies FlightExamManager that the player has taken off.
-
 using UnityEngine;
 
 public class TakeoffZoneController : MonoBehaviour

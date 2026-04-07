@@ -37,18 +37,14 @@ public class FlightController : MonoBehaviour
 
     private void HandleRotation()
     {
-        // Pitch (Aşağı/Yukarı) hareketini multiplier ile çarpıyoruz
+ 
         float pitchInput = Input.GetAxis("Vertical") * pitchMultiplier;
         transform.Rotate(Vector3.right * pitchInput * pitchSpeed * Time.deltaTime);
-        
         float yawInput = Input.GetAxis("Horizontal");
         transform.Rotate(Vector3.up * yawInput * yawSpeed * Time.deltaTime);
-        
         float rollInput = 0f;
         if (Input.GetKey(KeyCode.Q)) rollInput = 1f * rollMultiplier;
         if (Input.GetKey(KeyCode.E)) rollInput = -1f * rollMultiplier; 
-        
-        // Roll (Kendi etrafında dönme) hareketini güncelledik
         transform.Rotate(Vector3.forward * rollInput * rollSpeed * Time.deltaTime);
     }
 
@@ -56,7 +52,6 @@ public class FlightController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            // Sabit Vector3.forward yerine, Inspector'dan değiştirilebilen forwardDirection kullanıyoruz
             transform.Translate(forwardDirection * thrustSpeed * Time.deltaTime);
         }
     }
