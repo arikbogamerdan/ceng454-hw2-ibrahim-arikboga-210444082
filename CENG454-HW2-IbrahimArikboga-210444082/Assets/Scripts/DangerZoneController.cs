@@ -48,7 +48,7 @@ public class DangerZoneController : MonoBehaviour
         }
 
         // Destroy any active missile
-        missileLauncher.DestroyActiveMissile();
+        if (missileLauncher != null) missileLauncher.DestroyActiveMissile();
 
         // Tell the manager the threat is cleared
         examManager.ExitDangerZone();
@@ -61,7 +61,7 @@ public class DangerZoneController : MonoBehaviour
 
         // Only launch if the player is still in the zone (coroutine wasn't cancelled)
         Debug.Log("[DangerZoneController] Launching missile!");
-        missileLauncher.Launch(playerTransform);
+        if (missileLauncher != null) missileLauncher.Launch(playerTransform);
         activeCountdown = null;
     }
 }

@@ -12,6 +12,9 @@ public class FlightExamManager : MonoBehaviour
     [SerializeField] private TMP_Text statusText;
     [SerializeField] private TMP_Text missionText;
 
+    [Header("Warning Message")]
+    [SerializeField] private GameObject warningPanel;
+
     // Mission state flags
     private bool hasTakenOff = false;
     private bool inDangerZone = false;
@@ -21,6 +24,7 @@ public class FlightExamManager : MonoBehaviour
     void Start()
     {
         UpdateHUD("Ready for takeoff.", "");
+        if (warningPanel != null) warningPanel.SetActive(false);
     }
 
     // Called by TakeoffZoneController when aircraft leaves the takeoff area
@@ -35,9 +39,9 @@ public class FlightExamManager : MonoBehaviour
     // Called by DangerZoneController when aircraft enters the danger zone
     public void EnterDangerZone()
     {
-        if (!hasTakenOff) return;
         inDangerZone = true;
         UpdateHUD("Entered a Dangerous Zone!", "WARNING: Missile threat incoming!");
+        if (warningPanel != null) warningPanel.SetActive(true);
         Debug.Log("[FlightExamManager] Entered danger zone.");
     }
 
@@ -47,6 +51,7 @@ public class FlightExamManager : MonoBehaviour
         inDangerZone = false;
         threatCleared = true;
         UpdateHUD("Threat cleared. Find a landing strip.", "Zone exited safely.");
+        if (warningPanel != null) warningPanel.SetActive(false);
         Debug.Log("[FlightExamManager] Exited danger zone. Threat cleared.");
     }
 
